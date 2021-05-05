@@ -58,6 +58,26 @@ io.on('connection', (socket) => {
   	})
   })
 
+  socket.on('set_course_approve', (data) =>{
+  	console.log("set_course_approve ::", data)
+  	socket.broadcast.emit('set_course_approve_to_user', {
+  		title: data.title,
+  		content: data.content,
+  		course_id: data.course_id,
+  		user_id: data.user_id	
+  	})
+  })
+
+  socket.on('set_course_cancel', (data) =>{
+  	console.log("set_course_cancel ::", data)
+  	socket.broadcast.emit('set_course_cancel_to_user', {
+  		title: data.title,
+  		content: data.content,
+  		course_id: data.course_id,
+  		user_id: data.user_id	
+  	})
+  })
+
 });
 
 server.listen(3000, () => {
